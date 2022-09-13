@@ -43,7 +43,7 @@ void Risk::losses(int &numA, int& numD, std::vector<int> attacker, std::vector<i
         if(attacker[i] > defender[i]) numD--;
         else numA--;
 
-        if(numA <= 0 | numD <= 0) return;
+        if(numA <= 0 || numD <= 0) return;
     }
 }
 
