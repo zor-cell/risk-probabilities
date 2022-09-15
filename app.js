@@ -1,3 +1,9 @@
+const tableData = [
+    [1,2,3,4,5],
+    [0.2,0.3,0.4,0.5,0.6],
+    [0.2,0.5,0.6,0.5,0.8]
+];
+
 function App() {
     const [runs, setRuns] = React.useState(100000);
     const [attackers, setAttackers] = React.useState(10);
@@ -58,6 +64,34 @@ function App() {
 
             <h2>Result</h2>
             <h3 id="result" className="text-center">No Result</h3>
+
+            <table>
+                <caption>Probabilites up to 30 vs 30:</caption>
+                <thead>
+                    <tr>
+                        <th cope="col">-</th>
+                    {tableData[0].map((val, key) => {
+                        return (
+                            <th scope="col" key={key}>{val}</th>
+                        )
+                    })}
+                    </tr>
+                </thead>
+                <tbody>
+                    {tableData.slice(1).map((arr, arrKey) => {
+                        return (
+                            <tr key={arrKey}>
+                                <th>{arrKey}</th>
+                                {arr.map((val, key) => {
+                                    return (
+                                        <td key={key}>{val}</td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         </div>
     );
 }
