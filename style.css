@@ -5,6 +5,34 @@
 
 }
 
+.data-table {
+  width: 100%;
+}
+
+.data-table th {
+  
+}
+
+.data-table td {
+  
+}
+
+.cell-0 {
+  background-color: hsl(0, 100%, 60%);
+}
+.cell-20 {
+  background-color: hsl(0, 100%, 70%);
+}
+.cell-40 {
+  background-color: hsl(30, 100%, 60%);
+}
+.cell-60 {
+  background-color: hsl(120, 100%, 65%);
+}
+.cell-80 {
+  background-color: hsl(140, 100%, 40%);
+}
+
 .text-center {
     text-align: center;
 }
@@ -38,6 +66,12 @@
     --clr-easy: rgb(21, 194, 50);
     --clr-medium: hsla(40, 100%, 50%, 1);
     --clr-hard: hsla(0, 100%, 35%, 1);
+
+    --clr-0: rgb(255, 51, 51);
+    --clr-20: hsl(0, 100%, 70%);
+    --clr-40: hsl(30, 100%, 60%);
+    --clr-60: hsl(120, 100%, 65%);
+    --clr-80: hsl(140, 100%, 40%);
   }
   
   

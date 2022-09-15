@@ -1,8 +1,26 @@
-const tableData = [
-    [1,2,3,4,5],
-    [0.2,0.3,0.4,0.5,0.6],
-    [0.2,0.5,0.6,0.5,0.8]
-];
+let tableData = [];
+function readTableInput() {
+    let file = "assets/table_30x30.CSV";
+    let rawFile = new XMLHttpRequest();
+
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                tableData = allText.split("\n").map(function(row) {
+                    return row.split(",");
+                })
+                console.log(tableData);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+readTableInput();
 
 function App() {
     const [runs, setRuns] = React.useState(100000);
@@ -34,7 +52,19 @@ function App() {
             document.getElementById("result").innerHTML = attackers + " vs " + defenders + ": Win Chance for Attacker: "
             + p;
         });
-      }
+    }
+
+    function setCellColor(value) {
+        let ans = "cell-0";
+
+        if(value <= 0.2) ans = "cell-0";
+        else if(value <= 0.4) ans = "cell-20";
+        else if(value <= 0.6) ans = "cell-40";
+        else if(value <= 0.8) ans = "cell-60";
+        else if(value <= 1) ans = "cell-80";
+
+        return ans;
+    }
 
     return (
         <div>
@@ -65,26 +95,28 @@ function App() {
             <h2>Result</h2>
             <h3 id="result" className="text-center">No Result</h3>
 
-            <table>
+            <table className="data-table">
                 <caption>Probabilites up to 30 vs 30:</caption>
                 <thead>
                     <tr>
                         <th cope="col">-</th>
-                    {tableData[0].map((val, key) => {
-                        return (
-                            <th scope="col" key={key}>{val}</th>
-                        )
-                    })}
+                        {/* Read first row as headers */}
+                        {tableData[0].map((val, key) => {
+                            return (
+                                <th scope="col" key={key}>{val}</th>
+                            )
+                        })}
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Go through all rows execpt the first */}
                     {tableData.slice(1).map((arr, arrKey) => {
                         return (
                             <tr key={arrKey}>
-                                <th>{arrKey}</th>
+                                <th>{arrKey + 1}</th>
                                 {arr.map((val, key) => {
                                     return (
-                                        <td key={key}>{val}</td>
+                                        <td className={setCellColor({val}.val)} key={key}>{val}</td>
                                     )
                                 })}
                             </tr>
