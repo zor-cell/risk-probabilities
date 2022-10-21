@@ -2,7 +2,9 @@
 
 const double RUNS = 1e5;
 
-Risk::Risk(int _runs, int _attackers, int _defenders): runs(_runs), attackers(_attackers), defenders(_defenders) {}
+Risk::Risk(int _runs, int _attackers, int _defenders): runs(_runs), attackers(_attackers), defenders(_defenders) {
+    srand(time(NULL));
+};
 
 int Risk::diceThrow() {
     return rand() % 6;

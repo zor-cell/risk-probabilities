@@ -1,1 +1,3 @@
 em++ -I. -o ../../risk.js -Oz -s MODULARIZE=1 -s EXPORT_NAME=createModule --bind ../../src/risk.cpp ../../src/bindings.cpp
+
+#command in /dir/emsdk
