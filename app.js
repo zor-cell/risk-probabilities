@@ -57,8 +57,8 @@ function App() {
     function setCellColor(value) {
         let ans = "cell-0";
 
-        if(value <= 0.2) ans = "cell-0";
-        else if(value <= 0.4) ans = "cell-20";
+        if(value < 0.2) ans = "cell-0";
+        else if(value < 0.4) ans = "cell-20";
         else if(value <= 0.6) ans = "cell-40";
         else if(value <= 0.8) ans = "cell-60";
         else if(value <= 1) ans = "cell-80";
