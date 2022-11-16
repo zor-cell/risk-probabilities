@@ -7,14 +7,9 @@
 
 .data-table {
   width: 100%;
-}
+  color: black;
 
-.data-table th {
-  
-}
-
-.data-table td {
-  
+  overflow: hidden;
 }
 
 .cell-0 {

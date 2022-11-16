@@ -1,3 +1,6 @@
+//indicates how many cells are in which color range
+let colorData = [0,0,0,0,0];
+
 let tableData = [];
 function readTableInput() {
     let file = "assets/table_30x30.CSV";
@@ -54,14 +57,25 @@ function App() {
         });
     }
 
-    function setCellColor(value) {
+    function setCellColor(value, row, col) {
         let ans = "cell-0";
 
-        if(value < 0.2) ans = "cell-0";
-        else if(value < 0.4) ans = "cell-20";
-        else if(value <= 0.6) ans = "cell-40";
-        else if(value <= 0.8) ans = "cell-60";
-        else if(value <= 1) ans = "cell-80";
+        if(value < 0.2) {
+            ans = "cell-0";
+            colorData[0]++;
+        } else if(value < 0.4) {
+            ans = "cell-20";
+            colorData[1]++;
+        }else if(value <= 0.6) {
+            ans = "cell-40";
+            colorData[2]++;
+        } else if(value <= 0.8) {
+            ans = "cell-60";
+            colorData[3]++;
+        } else if(value <= 1) {
+            ans = "cell-80";
+            colorData[4]++;
+        }
 
         return ans;
     }
@@ -75,7 +89,6 @@ function App() {
                     Each battle gets simulated for the selected amount of Runs with the selected amount of Attackers and Defenders.
                     <br></br><br></br>Info: In this simulation "Attackers" denote troops that can attack, the 1 troop that has to remain
                     on a territory is not considered!
-                    <br></br>Info: A value of at least 10000 Runs is recommended for accurate results.
                     </p>
 
                     <span>Runs</span>
@@ -99,7 +112,7 @@ function App() {
                 <caption>Probabilites up to 30 vs 30:</caption>
                 <thead>
                     <tr>
-                        <th cope="col">-</th>
+                        <th cope="col">A\D</th>
                         {/* Read first row as headers */}
                         {tableData[0].map((val, key) => {
                             return (
@@ -116,7 +129,7 @@ function App() {
                                 <th>{arrKey + 1}</th>
                                 {arr.map((val, key) => {
                                     return (
-                                        <td className={setCellColor({val}.val)} key={key}>{val}</td>
+                                        <td className={setCellColor({val}.val, arrKey, key)} key={key}>{val}</td>
                                     )
                                 })}
                             </tr>
@@ -124,6 +137,7 @@ function App() {
                     })}
                 </tbody>
             </table>
+            {console.log(colorData)}
         </div>
     );
 }
