@@ -1,6 +1,7 @@
 //indicates how many cells are in which color range
 let colorData = [0,0,0,0,0];
 
+//save data from csv file to the following array
 let tableData = [];
 function readTableInput() {
     let file = "assets/table_30x30.CSV";
@@ -17,7 +18,6 @@ function readTableInput() {
                 tableData = allText.split("\n").map(function(row) {
                     return row.split(",");
                 })
-                console.log(tableData);
             }
         }
     }
@@ -32,7 +32,7 @@ function App() {
 
     function onRunsChange(event) {
         setRuns(Number(event.target.value));
-      }
+    }
 
     function onAttackersChange(event) {
         setAttackers(Number(event.target.value));
@@ -52,8 +52,7 @@ function App() {
             const risk = new Risk(runs, attackers, defenders);
             let p = risk.simulate();
 
-            document.getElementById("result").innerHTML = attackers + " vs " + defenders + ": Win Chance for Attacker: "
-            + p;
+            document.getElementById("result").innerHTML = attackers + " vs " + defenders + ": Win Chance for Attacker: " + (p * 100).toFixed(2) + "%";
         });
     }
 
@@ -137,7 +136,6 @@ function App() {
                     })}
                 </tbody>
             </table>
-            {console.log(colorData)}
         </div>
     );
 }
